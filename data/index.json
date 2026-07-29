@@ -1,0 +1,507 @@
+{
+ "generated_at": "2026-07-29T09:21:21+00:00",
+ "object_colors": [
+  "#00d7ff",
+  "#ffd166",
+  "#ff4f9a",
+  "#70e000",
+  "#c77dff",
+  "#ff7b00"
+ ],
+ "datasets": [
+  {
+   "id": "sav",
+   "name": "SA-V Dataset",
+   "license": "CC BY 4.0 (Meta SA-V) -- attribution required when republishing",
+   "pipelines": [
+    {
+     "id": "foundationpose",
+     "name": "FoundationPose",
+     "version": "v1"
+    },
+    {
+     "id": "wilddet3d",
+     "name": "WildDet3D",
+     "version": "v2"
+    }
+   ],
+   "videos": [
+    {
+     "id": "sav_015813",
+     "labels": [
+      "laptop"
+     ],
+     "note": "Cleanest example in the sample (jitter 0.014, dimCV 0.018). Static object with an orbiting camera, so the accumulated 4D point cloud reconstructs the scene well. Good default landing example.",
+     "media": {
+      "preview": "sav/sav_015813/preview.mp4",
+      "poster": "sav/sav_015813/poster.jpg",
+      "strip": "sav/sav_015813/strip.jpg",
+      "strip_tiles": 16
+     },
+     "width": 1080,
+     "height": 1920,
+     "fps": 24.0,
+     "n_frames": 273,
+     "duration_s": 11.375,
+     "pipelines": {
+      "foundationpose": {
+       "available": false,
+       "reason": "output root not present (outputs/step4_sav)"
+      },
+      "wilddet3d": {
+       "available": true,
+       "complete": true,
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "laptop",
+         "color": "#00d7ff",
+         "n_frames": 273,
+         "frame_first": 0,
+         "frame_last": 272,
+         "score_median": 1.3359
+        }
+       ],
+       "n_objects": 1,
+       "variants": [
+        "gt_box_prompt",
+        "point_prompt"
+       ],
+       "assets": {
+        "n_frames": 273,
+        "n_objects": 1,
+        "depth": "192x344",
+        "visualizations": [
+         "input",
+         "box_prompt",
+         "point_prompt"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "id": "sav_002845",
+     "labels": [
+      "person"
+     ],
+     "note": "The only video with v2 smoother output today (outputs/sav_smoother/sav_002845_point_v3_world), so it is the only raw-vs-smoothed comparison available. Keep in the set.",
+     "media": {
+      "preview": "sav/sav_002845/preview.mp4",
+      "poster": "sav/sav_002845/poster.jpg",
+      "strip": "sav/sav_002845/strip.jpg",
+      "strip_tiles": 16
+     },
+     "width": 1280,
+     "height": 720,
+     "fps": 24.0,
+     "n_frames": 243,
+     "duration_s": 10.125,
+     "pipelines": {
+      "foundationpose": {
+       "available": false,
+       "reason": "output root not present (outputs/step4_sav)"
+      },
+      "wilddet3d": {
+       "available": true,
+       "complete": true,
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "person",
+         "color": "#00d7ff",
+         "n_frames": 13,
+         "frame_first": 0,
+         "frame_last": 12,
+         "score_median": 1.0391
+        },
+        {
+         "masklet_id": 1,
+         "label": "person",
+         "color": "#ffd166",
+         "n_frames": 89,
+         "frame_first": 0,
+         "frame_last": 88,
+         "score_median": 0.9805
+        },
+        {
+         "masklet_id": 2,
+         "label": "person",
+         "color": "#ff4f9a",
+         "n_frames": 44,
+         "frame_first": 0,
+         "frame_last": 80,
+         "score_median": 0.9766
+        }
+       ],
+       "n_objects": 3,
+       "variants": [
+        "gt_box_prompt",
+        "point_prompt",
+        "smoothed"
+       ],
+       "assets": {
+        "n_frames": 243,
+        "n_objects": 3,
+        "depth": "344x192",
+        "visualizations": [
+         "input",
+         "box_prompt",
+         "point_prompt"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "id": "sav_025521",
+     "labels": [
+      "dog",
+      "toy ball"
+     ],
+     "note": "Deformable animal plus a small fast object. Score 1.23, jitter 0.034.",
+     "media": {
+      "preview": "sav/sav_025521/preview.mp4",
+      "poster": "sav/sav_025521/poster.jpg",
+      "strip": "sav/sav_025521/strip.jpg",
+      "strip_tiles": 16
+     },
+     "width": 544,
+     "height": 960,
+     "fps": 24.0,
+     "n_frames": 441,
+     "duration_s": 18.375,
+     "pipelines": {
+      "foundationpose": {
+       "available": false,
+       "reason": "output root not present (outputs/step4_sav)"
+      },
+      "wilddet3d": {
+       "available": true,
+       "complete": true,
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "toy ball",
+         "color": "#00d7ff",
+         "n_frames": 441,
+         "frame_first": 0,
+         "frame_last": 440,
+         "score_median": 1.1094
+        },
+        {
+         "masklet_id": 1,
+         "label": "dog",
+         "color": "#ffd166",
+         "n_frames": 441,
+         "frame_first": 0,
+         "frame_last": 440,
+         "score_median": 1.2344
+        }
+       ],
+       "n_objects": 2,
+       "variants": [
+        "gt_box_prompt",
+        "point_prompt"
+       ],
+       "assets": {
+        "n_frames": 441,
+        "n_objects": 2,
+        "depth": "192x344",
+        "visualizations": [
+         "input",
+         "box_prompt",
+         "point_prompt"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "id": "sav_039074",
+     "labels": [
+      "car"
+     ],
+     "note": "12.9 m of object travel -- the dynamic-object case that exercises world-frame trajectory rendering and makes the smoother matter.",
+     "media": {
+      "preview": "sav/sav_039074/preview.mp4",
+      "poster": "sav/sav_039074/poster.jpg",
+      "strip": "sav/sav_039074/strip.jpg",
+      "strip_tiles": 16
+     },
+     "width": 1280,
+     "height": 720,
+     "fps": 24.0,
+     "n_frames": 263,
+     "duration_s": 10.958,
+     "pipelines": {
+      "foundationpose": {
+       "available": false,
+       "reason": "output root not present (outputs/step4_sav)"
+      },
+      "wilddet3d": {
+       "available": true,
+       "complete": true,
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "car",
+         "color": "#00d7ff",
+         "n_frames": 9,
+         "frame_first": 0,
+         "frame_last": 8,
+         "score_median": 0.7422
+        },
+        {
+         "masklet_id": 1,
+         "label": "car",
+         "color": "#ffd166",
+         "n_frames": 45,
+         "frame_first": 0,
+         "frame_last": 44,
+         "score_median": 1.1797
+        },
+        {
+         "masklet_id": 2,
+         "label": "car",
+         "color": "#ff4f9a",
+         "n_frames": 129,
+         "frame_first": 0,
+         "frame_last": 128,
+         "score_median": 1.2344
+        }
+       ],
+       "n_objects": 3,
+       "variants": [
+        "gt_box_prompt",
+        "point_prompt"
+       ],
+       "assets": {
+        "n_frames": 263,
+        "n_objects": 3,
+        "depth": "344x192",
+        "visualizations": [
+         "input",
+         "box_prompt",
+         "point_prompt"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "id": "sav_027474",
+     "labels": [
+      "onion box",
+      "hand",
+      "person",
+      "smartphone"
+     ],
+     "note": "Cluttered indoor multi-object scene; tests per-object toggling.",
+     "media": {
+      "preview": "sav/sav_027474/preview.mp4",
+      "poster": "sav/sav_027474/poster.jpg",
+      "strip": "sav/sav_027474/strip.jpg",
+      "strip_tiles": 16
+     },
+     "width": 1080,
+     "height": 1920,
+     "fps": 24.0,
+     "n_frames": 278,
+     "duration_s": 11.583,
+     "pipelines": {
+      "foundationpose": {
+       "available": false,
+       "reason": "output root not present (outputs/step4_sav)"
+      },
+      "wilddet3d": {
+       "available": true,
+       "complete": true,
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "person",
+         "color": "#00d7ff",
+         "n_frames": 278,
+         "frame_first": 0,
+         "frame_last": 277,
+         "score_median": 0.6094
+        },
+        {
+         "masklet_id": 1,
+         "label": "smartphone",
+         "color": "#ffd166",
+         "n_frames": 278,
+         "frame_first": 0,
+         "frame_last": 277,
+         "score_median": 1.1875
+        },
+        {
+         "masklet_id": 2,
+         "label": "onion box",
+         "color": "#ff4f9a",
+         "n_frames": 278,
+         "frame_first": 0,
+         "frame_last": 277,
+         "score_median": 1.2891
+        },
+        {
+         "masklet_id": 3,
+         "label": "hand",
+         "color": "#70e000",
+         "n_frames": 278,
+         "frame_first": 0,
+         "frame_last": 277,
+         "score_median": 1.0625
+        }
+       ],
+       "n_objects": 4,
+       "variants": [
+        "gt_box_prompt",
+        "point_prompt"
+       ],
+       "assets": {
+        "n_frames": 278,
+        "n_objects": 4,
+        "depth": "192x344",
+        "visualizations": [
+         "input",
+         "box_prompt",
+         "point_prompt"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "id": "sav_000584",
+     "labels": [
+      "bus",
+      "car",
+      "car wheel"
+     ],
+     "note": "Outdoor street scene, 67 m travel. Already vetted by earlier viz work (outputs/sav_wilddet3d_visualizations/sav_000584_*).",
+     "media": {
+      "preview": "sav/sav_000584/preview.mp4",
+      "poster": "sav/sav_000584/poster.jpg",
+      "strip": "sav/sav_000584/strip.jpg",
+      "strip_tiles": 16
+     },
+     "width": 1080,
+     "height": 1920,
+     "fps": 24.0,
+     "n_frames": 354,
+     "duration_s": 14.75,
+     "pipelines": {
+      "foundationpose": {
+       "available": false,
+       "reason": "output root not present (outputs/step4_sav)"
+      },
+      "wilddet3d": {
+       "available": true,
+       "complete": true,
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "car wheel",
+         "color": "#00d7ff",
+         "n_frames": 37,
+         "frame_first": 64,
+         "frame_last": 100,
+         "score_median": 1.0781
+        },
+        {
+         "masklet_id": 1,
+         "label": "car",
+         "color": "#ffd166",
+         "n_frames": 77,
+         "frame_first": 60,
+         "frame_last": 136,
+         "score_median": 1.1562
+        },
+        {
+         "masklet_id": 2,
+         "label": "bus",
+         "color": "#ff4f9a",
+         "n_frames": 254,
+         "frame_first": 100,
+         "frame_last": 353,
+         "score_median": 1.1797
+        }
+       ],
+       "n_objects": 3,
+       "variants": [
+        "gt_box_prompt",
+        "point_prompt"
+       ],
+       "assets": {
+        "n_frames": 354,
+        "n_objects": 3,
+        "depth": "192x344",
+        "visualizations": [
+         "input",
+         "box_prompt",
+         "point_prompt"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "id": "sav_002749",
+     "labels": [
+      "white tiger"
+     ],
+     "note": "Visually striking single-object clip, hand-picked by an earlier agent (outputs/sav_wilddet3d_visualizations/sav_002749_white_tiger_*). Large travel (3.6 m) with a single clean subject.",
+     "media": {
+      "preview": "sav/sav_002749/preview.mp4",
+      "poster": "sav/sav_002749/poster.jpg",
+      "strip": "sav/sav_002749/strip.jpg",
+      "strip_tiles": 16
+     },
+     "width": 1080,
+     "height": 1920,
+     "fps": 24.0,
+     "n_frames": 288,
+     "duration_s": 12.0,
+     "pipelines": {
+      "foundationpose": {
+       "available": false,
+       "reason": "output root not present (outputs/step4_sav)"
+      },
+      "wilddet3d": {
+       "available": true,
+       "complete": true,
+       "objects": [
+        {
+         "masklet_id": 1,
+         "label": "white tiger",
+         "color": "#00d7ff",
+         "n_frames": 288,
+         "frame_first": 0,
+         "frame_last": 287,
+         "score_median": 1.2188
+        }
+       ],
+       "n_objects": 1,
+       "variants": [
+        "gt_box_prompt",
+        "point_prompt"
+       ],
+       "assets": {
+        "n_frames": 288,
+        "n_objects": 1,
+        "depth": "192x344",
+        "visualizations": [
+         "input",
+         "box_prompt",
+         "point_prompt"
+        ]
+       }
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
