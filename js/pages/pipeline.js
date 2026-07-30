@@ -6,17 +6,33 @@ import { assetURL } from '../config.js';
 const BLURB = {
   foundationpose: {
     tagline: 'v1 · mesh-and-pose',
-    what: 'Tracks a 2D mask with SAM3, reconstructs a per-frame mesh with SAM 3D '
-        + 'Objects, then fits a 6-DoF pose with FoundationPose.',
-    depth: 'Depth and camera from RADIO-ViPE',
+    what: 'Takes the ground-truth mask tracklet, reconstructs a per-frame mesh '
+        + 'with SAM 3D Objects, then fits a 6-DoF pose with FoundationPose.',
   },
   wilddet3d: {
     tagline: 'v2 · prompt-and-detect',
     what: 'Tracks 2D points with CoTracker, then prompts a pretrained WildDet3D '
         + 'with those points, the category label, metric depth and intrinsics.',
-    depth: 'Depth and camera from VGGT-Omega',
   },
 };
+
+/**
+ * Readable name for whatever actually produced this pipeline's depth.
+ *
+ * Read from the run's own metadata rather than assumed: v1's Step 1 on SA-V was
+ * rebuilt from v2's depth and intrinsics, so the old hardcoded "RADIO-ViPE"
+ * label had become false.
+ */
+const DEPTH_LABEL = {
+  'vggt_omega+wildmoge_metric_scale': 'VGGT-Omega + WildMoGe metric scale',
+  'RADIO-ViPE': 'RADIO-ViPE',
+};
+
+function depthLine(state) {
+  const source = state.depth_source;
+  if (!source) return 'Depth and camera stage unknown';
+  return `Depth and camera from ${DEPTH_LABEL[source] || source}`;
+}
 
 /** Pipeline picker: choose what to look at for one clip. */
 export function renderPipelinePicker(main, dataset, video) {
@@ -55,14 +71,14 @@ export function renderPipelinePicker(main, dataset, video) {
 
 function pipelineCard(dataset, video, pipe) {
   const state = video.pipelines?.[pipe.id] || {};
-  const blurb = BLURB[pipe.id] || { tagline: pipe.version, what: '', depth: '' };
+  const blurb = BLURB[pipe.id] || { tagline: pipe.version, what: '' };
   const ready = Boolean(state.available);
 
   const body = [
     el('p', { class: 'pipeline-tagline', text: blurb.tagline }),
     el('h3', { class: 'pipeline-name', text: pipe.name }),
     el('p', { class: 'pipeline-what', text: blurb.what }),
-    el('p', { class: 'pipeline-depth', text: blurb.depth }),
+    el('p', { class: 'pipeline-depth', text: depthLine(state) }),
   ];
 
   if (ready) {

@@ -46,9 +46,75 @@ export class Panel {
       el('div', {},
         el('h3', { class: 'viz-title', text: vis.title }),
         el('p', { class: 'viz-sub', text: vis.subtitle })),
-      el('span', { class: 'viz-rate', text: `${formatRate(vis.content_fps)} fps` })),
+      el('div', { class: 'viz-actions' },
+        el('span', { class: 'viz-rate', text: `${formatRate(vis.content_fps)} fps` }),
+        ...this.downloadButtons())),
     this.stage,
     vis.note ? el('p', { class: 'viz-note', text: vis.note }) : null);
+  }
+
+  /**
+   * Download this overlay: the full clip, full resolution, at its real frame
+   * rate. The mp4 on disk already is exactly that -- the 0.5x is a playbackRate
+   * applied in the browser, never baked into the file -- so this hands over the
+   * existing asset rather than re-encoding anything.
+   *
+   * A GIF is offered too, but only when the build produced one (`--gifs`):
+   * GIF runs ~15x the mp4 for identical pixels.
+   */
+  downloadButtons() {
+    const [, videoId, pipelineId] = this.base.split('/');
+    const stem = `${videoId}_${pipelineId}_${this.vis.id}`;
+    const buttons = [this.downloadButton('MP4', `${this.base}/${this.vis.video}`,
+      `${stem}.mp4`)];
+    if (this.vis.gif) {
+      buttons.push(this.downloadButton('GIF', `${this.base}/${this.vis.gif}`,
+        `${stem}.gif`, this.vis.gif_bytes));
+    }
+    return buttons;
+  }
+
+  downloadButton(label, path, filename, bytes = 0) {
+    const url = assetURL(path);
+    const button = el('a', {
+      class: 'viz-dl',
+      href: url,
+      download: filename,
+      title: `Download ${filename}${bytes ? ` (${(bytes / 1048576).toFixed(0)} MB)` : ''}`
+        + ' — full length, full resolution, real-time frame rate',
+    }, label);
+
+    button.addEventListener('click', async (event) => {
+      // The `download` attribute is ignored for cross-origin URLs, so on the
+      // hosted site a plain link would open the video in the tab instead of
+      // saving it. Fetching to a blob keeps the filename correct everywhere;
+      // if that fails for any reason the default navigation still runs.
+      if (button.dataset.busy) { event.preventDefault(); return; }
+      event.preventDefault();
+      button.dataset.busy = '1';
+      const original = button.textContent;
+      button.textContent = '…';
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`${response.status}`);
+        const blob = await response.blob();
+        const objectURL = URL.createObjectURL(blob);
+        const link = el('a', { href: objectURL, download: filename });
+        document.body.append(link);
+        link.click();
+        link.remove();
+        // Revoke on the next tick; revoking immediately can cancel the save.
+        setTimeout(() => URL.revokeObjectURL(objectURL), 10_000);
+        button.textContent = '✓';
+      } catch {
+        window.open(url, '_blank', 'noopener');
+        button.textContent = original;
+      } finally {
+        delete button.dataset.busy;
+        setTimeout(() => { button.textContent = original; }, 1500);
+      }
+    });
+    return button;
   }
 
   applyMode() {

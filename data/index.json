@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-29T09:21:21+00:00",
+ "generated_at": "2026-07-30T00:53:03+00:00",
  "object_colors": [
   "#00d7ff",
   "#ffd166",
@@ -31,7 +31,7 @@
      "labels": [
       "laptop"
      ],
-     "note": "Cleanest example in the sample (jitter 0.014, dimCV 0.018). Static object with an orbiting camera, so the accumulated 4D point cloud reconstructs the scene well. Good default landing example.",
+     "note": "Cleanest example in the sample (jitter 0.014, dimCV 0.018). CORRECTION: an earlier version of this note claimed an orbiting camera. It does not orbit -- measured independently in both pipelines, the camera moves ~0.09-0.10 m of path over 273 frames (1 cm bounding-box span), i.e. essentially static. World-frame trajectory is therefore weakly constrained here and will look near-frozen in world view; that is the footage, not a bug. Still the best clip for detection quality, just not for scene reconstruction.",
      "media": {
       "preview": "sav/sav_015813/preview.mp4",
       "poster": "sav/sav_015813/poster.jpg",
@@ -45,11 +45,41 @@
      "duration_s": 11.375,
      "pipelines": {
       "foundationpose": {
-       "available": false,
-       "reason": "output root not present (outputs/step4_sav)"
+       "available": true,
+       "reason": null,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "laptop",
+         "color": "#00d7ff",
+         "n_frames": 69,
+         "frame_first": 0,
+         "frame_last": 272,
+         "score_median": 0.2005
+        }
+       ],
+       "n_objects": 1,
+       "variants": [
+        "masks",
+        "meshes",
+        "smoothed"
+       ],
+       "assets": {
+        "n_frames": 273,
+        "n_objects": 1,
+        "depth": "225x400",
+        "visualizations": [
+         "input",
+         "trajectory",
+         "smoothed_trajectory",
+         "meshes(1)"
+        ]
+       }
       },
       "wilddet3d": {
        "available": true,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
        "complete": true,
        "objects": [
         {
@@ -65,7 +95,9 @@
        "n_objects": 1,
        "variants": [
         "gt_box_prompt",
-        "point_prompt"
+        "point_prompt",
+        "smoothed_box",
+        "smoothed_point"
        ],
        "assets": {
         "n_frames": 273,
@@ -74,7 +106,11 @@
         "visualizations": [
          "input",
          "box_prompt",
-         "point_prompt"
+         "point_prompt",
+         "box_trajectory",
+         "point_trajectory",
+         "smoothed_box_trajectory",
+         "smoothed_point_trajectory"
         ]
        }
       }
@@ -99,11 +135,59 @@
      "duration_s": 10.125,
      "pipelines": {
       "foundationpose": {
-       "available": false,
-       "reason": "output root not present (outputs/step4_sav)"
+       "available": true,
+       "reason": null,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "person",
+         "color": "#00d7ff",
+         "n_frames": 4,
+         "frame_first": 0,
+         "frame_last": 12,
+         "score_median": 0.0332
+        },
+        {
+         "masklet_id": 1,
+         "label": "person",
+         "color": "#ffd166",
+         "n_frames": 23,
+         "frame_first": 0,
+         "frame_last": 88,
+         "score_median": 0.0114
+        },
+        {
+         "masklet_id": 2,
+         "label": "person",
+         "color": "#ff4f9a",
+         "n_frames": 12,
+         "frame_first": 0,
+         "frame_last": 80,
+         "score_median": 0.0067
+        }
+       ],
+       "n_objects": 3,
+       "variants": [
+        "masks",
+        "meshes",
+        "smoothed"
+       ],
+       "assets": {
+        "n_frames": 243,
+        "n_objects": 3,
+        "depth": "400x225",
+        "visualizations": [
+         "input",
+         "trajectory",
+         "smoothed_trajectory",
+         "meshes(3)"
+        ]
+       }
       },
       "wilddet3d": {
        "available": true,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
        "complete": true,
        "objects": [
         {
@@ -138,7 +222,8 @@
        "variants": [
         "gt_box_prompt",
         "point_prompt",
-        "smoothed"
+        "smoothed_box",
+        "smoothed_point"
        ],
        "assets": {
         "n_frames": 243,
@@ -147,7 +232,11 @@
         "visualizations": [
          "input",
          "box_prompt",
-         "point_prompt"
+         "point_prompt",
+         "box_trajectory",
+         "point_trajectory",
+         "smoothed_box_trajectory",
+         "smoothed_point_trajectory"
         ]
        }
       }
@@ -173,11 +262,50 @@
      "duration_s": 18.375,
      "pipelines": {
       "foundationpose": {
-       "available": false,
-       "reason": "output root not present (outputs/step4_sav)"
+       "available": true,
+       "reason": null,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "toy ball",
+         "color": "#00d7ff",
+         "n_frames": 111,
+         "frame_first": 0,
+         "frame_last": 440,
+         "score_median": 0.002
+        },
+        {
+         "masklet_id": 1,
+         "label": "dog",
+         "color": "#ffd166",
+         "n_frames": 111,
+         "frame_first": 0,
+         "frame_last": 440,
+         "score_median": 0.0721
+        }
+       ],
+       "n_objects": 2,
+       "variants": [
+        "masks",
+        "meshes",
+        "smoothed"
+       ],
+       "assets": {
+        "n_frames": 441,
+        "n_objects": 2,
+        "depth": "227x400",
+        "visualizations": [
+         "input",
+         "trajectory",
+         "smoothed_trajectory",
+         "meshes(2)"
+        ]
+       }
       },
       "wilddet3d": {
        "available": true,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
        "complete": true,
        "objects": [
         {
@@ -202,7 +330,9 @@
        "n_objects": 2,
        "variants": [
         "gt_box_prompt",
-        "point_prompt"
+        "point_prompt",
+        "smoothed_box",
+        "smoothed_point"
        ],
        "assets": {
         "n_frames": 441,
@@ -211,7 +341,11 @@
         "visualizations": [
          "input",
          "box_prompt",
-         "point_prompt"
+         "point_prompt",
+         "box_trajectory",
+         "point_trajectory",
+         "smoothed_box_trajectory",
+         "smoothed_point_trajectory"
         ]
        }
       }
@@ -236,11 +370,59 @@
      "duration_s": 10.958,
      "pipelines": {
       "foundationpose": {
-       "available": false,
-       "reason": "output root not present (outputs/step4_sav)"
+       "available": true,
+       "reason": null,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "car",
+         "color": "#00d7ff",
+         "n_frames": 3,
+         "frame_first": 0,
+         "frame_last": 8,
+         "score_median": 0.0047
+        },
+        {
+         "masklet_id": 1,
+         "label": "car",
+         "color": "#ffd166",
+         "n_frames": 12,
+         "frame_first": 0,
+         "frame_last": 44,
+         "score_median": 0.0107
+        },
+        {
+         "masklet_id": 2,
+         "label": "car",
+         "color": "#ff4f9a",
+         "n_frames": 33,
+         "frame_first": 0,
+         "frame_last": 128,
+         "score_median": 0.0258
+        }
+       ],
+       "n_objects": 3,
+       "variants": [
+        "masks",
+        "meshes",
+        "smoothed"
+       ],
+       "assets": {
+        "n_frames": 263,
+        "n_objects": 3,
+        "depth": "400x225",
+        "visualizations": [
+         "input",
+         "trajectory",
+         "smoothed_trajectory",
+         "meshes(3)"
+        ]
+       }
       },
       "wilddet3d": {
        "available": true,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
        "complete": true,
        "objects": [
         {
@@ -274,7 +456,9 @@
        "n_objects": 3,
        "variants": [
         "gt_box_prompt",
-        "point_prompt"
+        "point_prompt",
+        "smoothed_box",
+        "smoothed_point"
        ],
        "assets": {
         "n_frames": 263,
@@ -283,7 +467,11 @@
         "visualizations": [
          "input",
          "box_prompt",
-         "point_prompt"
+         "point_prompt",
+         "box_trajectory",
+         "point_trajectory",
+         "smoothed_box_trajectory",
+         "smoothed_point_trajectory"
         ]
        }
       }
@@ -311,11 +499,68 @@
      "duration_s": 11.583,
      "pipelines": {
       "foundationpose": {
-       "available": false,
-       "reason": "output root not present (outputs/step4_sav)"
+       "available": true,
+       "reason": null,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "person",
+         "color": "#00d7ff",
+         "n_frames": 70,
+         "frame_first": 0,
+         "frame_last": 276,
+         "score_median": 0.5558
+        },
+        {
+         "masklet_id": 1,
+         "label": "smartphone",
+         "color": "#ffd166",
+         "n_frames": 70,
+         "frame_first": 0,
+         "frame_last": 276,
+         "score_median": 0.0123
+        },
+        {
+         "masklet_id": 2,
+         "label": "onion box",
+         "color": "#ff4f9a",
+         "n_frames": 70,
+         "frame_first": 0,
+         "frame_last": 276,
+         "score_median": 0.0215
+        },
+        {
+         "masklet_id": 3,
+         "label": "hand",
+         "color": "#70e000",
+         "n_frames": 70,
+         "frame_first": 0,
+         "frame_last": 276,
+         "score_median": 0.0463
+        }
+       ],
+       "n_objects": 4,
+       "variants": [
+        "masks",
+        "meshes",
+        "smoothed"
+       ],
+       "assets": {
+        "n_frames": 278,
+        "n_objects": 4,
+        "depth": "225x400",
+        "visualizations": [
+         "input",
+         "trajectory",
+         "smoothed_trajectory",
+         "meshes(4)"
+        ]
+       }
       },
       "wilddet3d": {
        "available": true,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
        "complete": true,
        "objects": [
         {
@@ -358,7 +603,9 @@
        "n_objects": 4,
        "variants": [
         "gt_box_prompt",
-        "point_prompt"
+        "point_prompt",
+        "smoothed_box",
+        "smoothed_point"
        ],
        "assets": {
         "n_frames": 278,
@@ -367,7 +614,11 @@
         "visualizations": [
          "input",
          "box_prompt",
-         "point_prompt"
+         "point_prompt",
+         "box_trajectory",
+         "point_trajectory",
+         "smoothed_box_trajectory",
+         "smoothed_point_trajectory"
         ]
        }
       }
@@ -394,11 +645,59 @@
      "duration_s": 14.75,
      "pipelines": {
       "foundationpose": {
-       "available": false,
-       "reason": "output root not present (outputs/step4_sav)"
+       "available": true,
+       "reason": null,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
+       "objects": [
+        {
+         "masklet_id": 0,
+         "label": "car wheel",
+         "color": "#00d7ff",
+         "n_frames": 10,
+         "frame_first": 64,
+         "frame_last": 100,
+         "score_median": 0.0039
+        },
+        {
+         "masklet_id": 1,
+         "label": "car",
+         "color": "#ffd166",
+         "n_frames": 20,
+         "frame_first": 60,
+         "frame_last": 136,
+         "score_median": 0.0609
+        },
+        {
+         "masklet_id": 2,
+         "label": "bus",
+         "color": "#ff4f9a",
+         "n_frames": 64,
+         "frame_first": 100,
+         "frame_last": 352,
+         "score_median": 0.0115
+        }
+       ],
+       "n_objects": 3,
+       "variants": [
+        "masks",
+        "meshes",
+        "smoothed"
+       ],
+       "assets": {
+        "n_frames": 354,
+        "n_objects": 3,
+        "depth": "225x400",
+        "visualizations": [
+         "input",
+         "trajectory",
+         "smoothed_trajectory",
+         "meshes(3)"
+        ]
+       }
       },
       "wilddet3d": {
        "available": true,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
        "complete": true,
        "objects": [
         {
@@ -432,7 +731,9 @@
        "n_objects": 3,
        "variants": [
         "gt_box_prompt",
-        "point_prompt"
+        "point_prompt",
+        "smoothed_box",
+        "smoothed_point"
        ],
        "assets": {
         "n_frames": 354,
@@ -441,7 +742,11 @@
         "visualizations": [
          "input",
          "box_prompt",
-         "point_prompt"
+         "point_prompt",
+         "box_trajectory",
+         "point_trajectory",
+         "smoothed_box_trajectory",
+         "smoothed_point_trajectory"
         ]
        }
       }
@@ -466,17 +771,47 @@
      "duration_s": 12.0,
      "pipelines": {
       "foundationpose": {
-       "available": false,
-       "reason": "output root not present (outputs/step4_sav)"
+       "available": true,
+       "reason": null,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
+       "objects": [
+        {
+         "masklet_id": 1,
+         "label": "white tiger",
+         "color": "#ffd166",
+         "n_frames": 72,
+         "frame_first": 0,
+         "frame_last": 284,
+         "score_median": 0.05
+        }
+       ],
+       "n_objects": 1,
+       "variants": [
+        "masks",
+        "meshes",
+        "smoothed"
+       ],
+       "assets": {
+        "n_frames": 288,
+        "n_objects": 1,
+        "depth": "225x400",
+        "visualizations": [
+         "input",
+         "trajectory",
+         "smoothed_trajectory",
+         "meshes(1)"
+        ]
+       }
       },
       "wilddet3d": {
        "available": true,
+       "depth_source": "vggt_omega+wildmoge_metric_scale",
        "complete": true,
        "objects": [
         {
          "masklet_id": 1,
          "label": "white tiger",
-         "color": "#00d7ff",
+         "color": "#ffd166",
          "n_frames": 288,
          "frame_first": 0,
          "frame_last": 287,
@@ -486,7 +821,9 @@
        "n_objects": 1,
        "variants": [
         "gt_box_prompt",
-        "point_prompt"
+        "point_prompt",
+        "smoothed_box",
+        "smoothed_point"
        ],
        "assets": {
         "n_frames": 288,
@@ -495,7 +832,11 @@
         "visualizations": [
          "input",
          "box_prompt",
-         "point_prompt"
+         "point_prompt",
+         "box_trajectory",
+         "point_trajectory",
+         "smoothed_box_trajectory",
+         "smoothed_point_trajectory"
         ]
        }
       }
